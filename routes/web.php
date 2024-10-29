@@ -5,7 +5,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\HomeController;
 
-// Rota principal
+// Rota principal :)
 // Route::get('/', [HomeController::class, 'index']);
 
 Route::get('/', function () {
