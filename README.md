@@ -28,10 +28,3 @@ O sistema permite que usuários criem, visualizem, editem e excluam links, organ
 - Servidor Web (Apache ou Nginx)
 - MySQL
 
-## Instalação
-
-Siga os passos abaixo para configurar o projeto localmente:
-
-1. Clone o repositório:
-   ```bash
-   git clone https://github.com/MatheusPatricioo/crud-mp-outubro.git
