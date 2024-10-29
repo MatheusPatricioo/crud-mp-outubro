@@ -68,7 +68,7 @@ class PageController extends Controller
         $page->id_user = $user->id; // Define o id_user como o ID do usuário logado
         $page->op_title = $request->input('op_title');
         $page->slug = $request->input('slug');
-        $page->op_bg_type = $request->input('op_bg_type', 'color'); // Exemplo de preenchimento com valor padrão
+        $page->op_bg_type = $request->input('op_bg_type', 'color');
         $page->op_bg_value = $request->input('op_bg_value', '#ffffff');
         $page->op_font_color = $request->input('op_font_color', '#000000');
         $page->op_description = $request->input('op_description', 'Descrição padrão');

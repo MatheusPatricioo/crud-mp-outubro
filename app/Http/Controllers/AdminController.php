@@ -149,7 +149,9 @@ class AdminController extends Controller
             return redirect('/admin/register')->with('error', 'Já existe um usuário com este e-mail.');
         }
     }
-
+    /**
+     * Exibe a tela inicial do administrador com as páginas associadas ao usuário autenticado.
+     */
     public function index()
     {
         $user = Auth::user();
@@ -160,7 +162,9 @@ class AdminController extends Controller
             'pages' => $pages
         ]);
     }
-
+        /**
+     * Realiza o logout do usuário e redireciona para a página de login.
+     */
     public function logout()
     {
         Auth::logout();

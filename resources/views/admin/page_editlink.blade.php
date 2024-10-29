@@ -4,7 +4,6 @@
 
 <h3>{{isset($link) ? 'Editar Link' : 'Novo Link'}}</h3>
 
-
 @if ($errors->any())
     <ul>
         @foreach($errors->all() as $error)
@@ -13,10 +12,8 @@
     </ul>
 @endif
 
-
 <form method="POST">
     @csrf
-
     <label>
         Status:<br />
         <select name="status">
@@ -58,7 +55,5 @@
     <label>
         <input type="submit" value="Salvar" />
     </label>
-
 </form>
-
 @endsection
