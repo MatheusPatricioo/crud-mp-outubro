@@ -294,17 +294,17 @@ class AdminController extends Controller
         $page = Page::where('id_user', $user->id)
             ->where('slug', $slug)
             ->first();
-    
+
         // Verifica se a página existe
         if (!$page) {
             return redirect('/admin');
         }
-    
+
         // Agora busca o link associado à página
         $link = Link::where('id_page', $page->id)
             ->where('id', $linkid)
             ->first();
-    
+
         // Verifica se o link existe
         if ($link) {
             return view('admin/page_editlink', [
@@ -313,11 +313,95 @@ class AdminController extends Controller
                 'link' => $link
             ]);
         }
-    
+
         // Se o link não for encontrado, redireciona para a área inicial
         return redirect('/admin');
     }
-    
+
+    public function editLinkAction($slug, $linkid, Request $request)
+    {
+
+        $user = Auth::user();
+        $page = Page::where('id_user', $user->id)
+            ->where('slug', $slug)
+            ->first();
+
+        // Verifica se a página existe
+        if (!$page) {
+            return redirect('/admin');
+        }
+
+        // Agora busca o link associado à página
+        $link = Link::where('id_page', $page->id)
+            ->where('id', $linkid)
+            ->first();
+
+        // Verifica se o link existe
+        if ($link) {
+
+            $fields = $request->validate([
+                'status' => ['required', 'boolean'],
+                'title' => ['required', 'min:2'],
+                'href' => ['required', 'url'],
+                'op_bg_color' => ['required', 'regex:/^[#][0-9A-F]{3,6}$/i'],
+                'op_text_color' => ['required', 'regex:/^[#][0-9A-F]{3,6}$/i'],
+                'op_border_type' => ['required', Rule::in(['square', 'rounded'])],
+                'label' => ['nullable', 'string']
+            ]);
+
+            $link->status = $fields['status'];
+            $link->title = $fields['title'];
+            $link->href = $fields['href'];
+            $link->op_bg_color = $fields['op_bg_color'];
+            $link->op_text_color = $fields['op_text_color'];
+            $link->op_border_type = $fields['op_border_type'];
+            $link->save();
+
+            return redirect('/admin/' . $page->slug . '/links');
+        }
+
+
+
+        // Se o link não for encontrado, redireciona para a área inicial
+        return redirect('/admin');
+    }
+
+    public function delLink($slug, $linkid)
+    {
+        $user = Auth::user();
+        $page = Page::where('id_user', $user->id)
+            ->where('slug', $slug)
+            ->first();
+
+        // Verifica se a página existe
+        if (!$page) {
+            return redirect('/admin');
+        }
+
+        // Agora busca o link associado à página
+        $link = Link::where('id_page', $page->id)
+            ->where('id', $linkid)
+            ->first();
+
+        // Verifica se o link existe
+        if ($link) {
+            $link->delete();
+            // Corrigindo as posições
+            $allLinks = Link::where('id_page', $page->id)
+                ->orderBy('order', 'ASC')
+                ->get();
+            foreach ($allLinks as $linkKey => $linkItem) {
+                $linkItem->order = $linkKey;
+                $linkItem->save();
+            }
+            return redirect('/admin/' . $page->slug . '/links');
+
+        }
+
+        // Se o link não for encontrado, redireciona para a área inicial
+        return redirect('/admin');
+    }
+
 
     public function pageDesign($slug)
     {

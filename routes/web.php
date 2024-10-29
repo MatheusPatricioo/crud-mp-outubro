@@ -35,6 +35,10 @@ Route::prefix('/admin')->group(function () {
     Route::post('/{slug}/newlink', [AdminController::class, 'newLinkAction']);
 
     Route::get('/{slug}/editlink/{linkid}', [AdminController::class, 'editLink']);
+    Route::post('/{slug}/editlink/{linkid}', [AdminController::class, 'editLinkAction']);
+
+    // Altere aqui para permitir o método DELETE
+    Route::delete('/{slug}/dellink/{linkid}', [AdminController::class, 'delLink']);
 });
 
 // Rota para páginas dinâmicas
