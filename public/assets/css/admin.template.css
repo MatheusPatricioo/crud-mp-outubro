@@ -345,3 +345,72 @@ form input[type=submit]:hover {
 h3 {
     margin-left: 20px;
 }
+
+#links {
+    list-style: none;
+    padding: 0;
+    margin-top: 20px;
+}
+.link--item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 15px;
+    margin-bottom: 8px;
+    border-radius: 8px;
+    background-color: #f4f4f4;
+    border: 1px solid #e0e0e0;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+}
+.link--item-order {
+    cursor: grab;
+    margin-right: 15px;
+}
+.link--item-info {
+    flex: 1;
+    overflow: hidden;
+}
+.link--item-title {
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
+}
+.link--item-href {
+    font-size: 14px;
+    color: #666;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+ .link--item-buttons {
+    
+    gap: 8px;
+} 
+
+.button-edit, .button-delete {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    flex: 1;
+    text-align: center;
+}
+
+.button-edit {
+    background-color: #4CAF50; 
+    color: white;
+}
+
+.button-delete {
+    background-color: #f44336;  
+}
+
+.button-delete:hover {
+    background-color: #d32f2f;
+}
+
+.button-edit:hover {
+    background-color: #388e3c;
+}

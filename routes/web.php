@@ -33,6 +33,8 @@ Route::prefix('/admin')->group(function () {
 
     Route::get('/{slug}/newlink', [AdminController::class, 'newLink']);
     Route::post('/{slug}/newlink', [AdminController::class, 'newLinkAction']);
+
+    Route::get('/{slug}/editlink/{linkid}', [AdminController::class, 'editLink']);
 });
 
 // Rota para páginas dinâmicas

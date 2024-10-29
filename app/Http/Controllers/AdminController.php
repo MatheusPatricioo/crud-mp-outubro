@@ -252,7 +252,7 @@ class AdminController extends Controller
         $page = Page::where('id_user', $user->id)
             ->where('slug', $slug)
             ->first();
-    
+
         if ($page) {
             $fields = $request->validate([
                 'status' => ['required', 'boolean'],
@@ -263,7 +263,7 @@ class AdminController extends Controller
                 'op_border_type' => ['required', Rule::in(['square', 'rounded'])],
                 'label' => ['nullable', 'string']
             ]);
-    
+
             $newLink = new Link();
             $newLink->id_page = $page->id;
             $newLink->status = $fields['status'];
@@ -276,19 +276,49 @@ class AdminController extends Controller
             $newLink->id_user = $user->id;
             $newLink->url = $fields['href'];
             $newLink->label = $fields['label'] ?? 'Default Label';
-            
+
             // Define o campo `order` com base no próximo valor disponível
             $newLink->order = Link::where('id_page', $page->id)->max('order') + 1;
-    
+
             $newLink->save();
-    
+
             return redirect('/admin/' . $page->slug . '/links');
         } else {
             return redirect('/admin');
         }
     }
+
+    public function editLink($slug, $linkid)
+    {
+        $user = Auth::user();
+        $page = Page::where('id_user', $user->id)
+            ->where('slug', $slug)
+            ->first();
     
+        // Verifica se a página existe
+        if (!$page) {
+            return redirect('/admin');
+        }
     
+        // Agora busca o link associado à página
+        $link = Link::where('id_page', $page->id)
+            ->where('id', $linkid)
+            ->first();
+    
+        // Verifica se o link existe
+        if ($link) {
+            return view('admin/page_editlink', [
+                'menu' => 'links', // Corrigido para 'links'
+                'page' => $page,
+                'link' => $link
+            ]);
+        }
+    
+        // Se o link não for encontrado, redireciona para a área inicial
+        return redirect('/admin');
+    }
+    
+
     public function pageDesign($slug)
     {
         return view('admin/page_design', [

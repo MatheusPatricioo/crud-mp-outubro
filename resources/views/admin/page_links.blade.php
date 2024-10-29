@@ -14,13 +14,11 @@
                 <div class="link--item-href">{{ $link->href }}</div>
             </div>
             <div class="link--item-buttons">
-                <!-- Botão de editar -->
                 <a href="{{ url('/admin/' . $page->slug . '/editlink/' . $link->id) }}" class="button-edit">Editar</a>
-
-                <!-- Botão de excluir com formulário para envio de DELETE -->
                 <form action="{{ url('/admin/' . $page->slug . '/dellink/' . $link->id) }}" method="POST" style="display:inline;">
                     @csrf
                     @method('DELETE')
+                    
                     <button type="submit" class="button-delete" onclick="return confirm('Tem certeza que deseja excluir este link?')">Excluir</button>
                 </form>
             </div>
@@ -36,8 +34,7 @@
             onEnd: async (e) => {
                 let id = e.item.getAttribute('data-id');
                 let link = `{{ url('/admin/linkorder') }}/${id}/${e.newIndex}`;
-
-
+                
                 try {
                     let response = await fetch(link, { method: 'POST', headers: { 'X-CSRF-TOKEN': '{{ csrf_token() }}' } });
                     if (response.ok) {
@@ -52,4 +49,5 @@
         });
     });
 </script>
+
 @endsection

@@ -7,7 +7,6 @@
     <title>{{ $title }}</title>
     <style>
         body {
-            
             font-family: Arial, sans-serif;
             background: {{ $bg }};
             color: {{ $font_color }};
@@ -37,7 +36,6 @@
         }
         .link-item a {
             text-decoration: none;
-            color: #007bff;
             font-size: 1.1rem;
         }
         .link-item a:hover {
@@ -54,8 +52,8 @@
         <div class="links">
             <h2>Links</h2>
             @foreach($links as $link)
-                <div class="link-item">
-                    <a href="{{ $link->url }}" target="_blank">{{ $link->title }}</a>
+                <div class="link-item" style="background-color: {{ $link->op_bg_color }}; color: {{ $link->op_text_color }}; border-radius: {{ $link->op_border_type == 'rounded' ? '8px' : '0' }}; padding: 10px;">
+                    <a href="{{ $link->url }}" target="_blank" style="color: {{ $link->op_text_color }};">{{ $link->title }}</a>
                 </div>
             @endforeach
         </div>
