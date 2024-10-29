@@ -40,7 +40,7 @@
             left: 50%;
             transform: translateX(-50%);
             border: 4px solid #fff;
-            z-index: 1; /* Garantindo que a imagem fique acima do banner */
+            z-index: 1; /* Garantindo que a imagem fique acima do banner. */
         }
         .content {
             padding: 80px 20px 20px;
