@@ -18,12 +18,19 @@ use App\Models\Link;
 
 class AdminController extends Controller
 {
+    /**
+     * Exibe a tela de login e autentica o usuário.
+     * - Se o método for GET, renderiza a página de login.
+     * - Se for POST, valida o formulário e realiza a autenticação.
+     */
     public function login(Request $request)
     {
+        // Verifica o método HTTP e exibe a view de login
         if ($request->isMethod('get')) {
             return view('admin/login');
         }
 
+        // Define regras e mensagens de validação para login
         $rules = [
             'email' => 'required|email',
             'password' => 'required|min:7'
@@ -36,21 +43,26 @@ class AdminController extends Controller
             'password.min' => 'A senha deve ter pelo menos 7 caracteres.'
         ];
 
+        // Redireciona de volta caso haja erros de validação
         $validator = Validator::make($request->all(), $rules, $messages);
 
         if ($validator->fails()) {
             return redirect()->back()->withErrors($validator)->withInput();
         }
 
+        // Tenta autenticar o usuário
         if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
             return redirect('/admin');
         }
 
+        // Redireciona com mensagem de erro caso a autenticação falhe
         return redirect()->back()->with('error', 'E-mail e/ou senha não conferem.');
     }
 
+    // Realiza a ação de login ao validar as credenciais do usuário.
     public function loginAction(Request $request)
     {
+        // Coleta e tenta autenticar as credenciais
         $creds = $request->only('email', 'password');
 
         if (Auth::attempt($creds)) {
@@ -59,13 +71,17 @@ class AdminController extends Controller
             return redirect('/admin/login')->with('error', 'E-mail e/ou senha não conferem.');
         }
     }
-
+    /**
+     * Exibe a tela de registro e cadastra um novo usuário.
+     * - Se o método for GET, renderiza a página de registro.
+     * - Se for POST, valida o formulário e registra o novo usuário.
+     */
     public function register(Request $request)
     {
         if ($request->isMethod('get')) {
             return view('admin/register');
         }
-
+        // Define regras e mensagens de validação para registro
         $rules = [
             'name' => 'required|string|max:255',
             'email' => 'required|email|unique:users,email',
@@ -87,7 +103,7 @@ class AdminController extends Controller
         if ($validator->fails()) {
             return redirect()->back()->withErrors($validator)->withInput();
         }
-
+         // Cria e salva o novo usuário
         $user = new User();
         $user->name = $request->name;
         $user->email = $request->email;
@@ -140,18 +156,6 @@ class AdminController extends Controller
 
         $pages = Page::where('id_user', $user->id)->get();
 
-        // $title = 'Dashboard Admin';
-        // $bg = '#f4f4f4'; // Exemplo de cor de fundo
-        // $font_color = '#333'; // Exemplo de cor da fonte
-        // $profile_image = 'path/to/profile-image.jpg'; // Substitua pelo caminho da imagem de perfil
-        // $description = 'Bem-vindo ao painel de pipipi popopo';
-        // $links = [
-        //     (object) ['url' => 'https://example.com', 'title' => 'Exemplo 1'],
-        //     (object) ['url' => 'https://another-example.com', 'title' => 'Exemplo 2']
-        // ];
-
-        // return view('admin.index',
-        //  compact('title', 'bg', 'font_color', 'profile_image', 'description', 'links'));
         return view('admin.index', [
             'pages' => $pages
         ]);
