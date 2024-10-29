@@ -6,9 +6,13 @@
 /storage/*.key
 /storage/pail
 /vendor
+
+# Arquivos de configuração de ambiente
 .env
 .env.backup
 .env.production
+
+# Caches e arquivos específicos de IDEs
 .phpactor.json
 .phpunit.result.cache
 Homestead.json
@@ -20,3 +24,6 @@ yarn-error.log
 /.idea
 /.vscode
 /.zed
+
+# Adicionar arquivos de exemplo para referência de configuração
+!.env.example
