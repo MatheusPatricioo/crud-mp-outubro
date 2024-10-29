@@ -30,9 +30,10 @@ Route::prefix('/admin')->group(function () {
     Route::get('/{slug}/stats', [AdminController::class, 'pageStats']);
 
     Route::get('/linkorder/{linkid}/{pos}', [AdminController::class, 'linkOrderUpdate']);
-    Route::get('/{slug}/newlink', [AdminController::class, 'newLink']);
 
+    Route::get('/{slug}/newlink', [AdminController::class, 'newLink']);
+    Route::post('/{slug}/newlink', [AdminController::class, 'newLinkAction']);
 });
 
 // Rota para páginas dinâmicas
-Route::get('/{slug}', [PageController::class, 'index']);
+Route::get('/{slug}', [PageController::class, 'index'])->where('slug', '^(?!admin).*'); // Garante que 'admin' não será um slug

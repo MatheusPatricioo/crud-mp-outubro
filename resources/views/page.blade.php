@@ -7,6 +7,7 @@
     <title>{{ $title }}</title>
     <style>
         body {
+            
             font-family: Arial, sans-serif;
             background: {{ $bg }};
             color: {{ $font_color }};

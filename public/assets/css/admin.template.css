@@ -1,4 +1,3 @@
-
 *,
 *::before,
 *::after {
@@ -30,7 +29,6 @@ nav {
     padding: 1rem 0;
     box-shadow: 2px 0 8px rgba(0, 0, 0, 0.1);
     justify-content: space-between;
-    /* Distribui o conteúdo entre topo e rodapé */
 }
 
 nav a {
@@ -53,7 +51,6 @@ nav .logoff {
     margin-top: auto;
     color: #ff6b6b;
     margin-bottom: 20px;
-    /* Ajuste adicional para alinhar com o rodapé */
 }
 
 /* Main Content */
@@ -83,7 +80,6 @@ header ul {
     list-style: none;
     padding: 0;
     display: flex;
-
 }
 
 header li {
@@ -99,17 +95,15 @@ header li a {
     padding: 15px;
     text-decoration: none;
     color: #000;
-
 }
 
-header li :active{
+header li :active {
     border-bottom: 2px solid #000;
 }
 
 header li.active a {
     border-bottom: 2px solid #000;
 }
-
 
 header h1 {
     font-size: 1.8rem;
@@ -130,7 +124,6 @@ header .actions-bar a {
     text-decoration: none;
     transition: background-color 0.3s;
 }
-
 
 table {
     width: 100%;
@@ -162,18 +155,12 @@ table tbody tr:hover {
 }
 
 /* Links in Table */
-/* Botões de Link */
 table .actions {
     display: flex;
     flex-direction: column;
-    /* Organiza os links verticalmente */
     gap: 0.8rem;
-    /* Maior espaço entre os links */
     align-items: flex-start;
-    /* Alinha os links à esquerda */
 }
-
-
 
 table a {
     color: #1d72b8;
@@ -185,7 +172,6 @@ table a {
 
 table a:hover {
     background-color: #d1e4f2;
-
 }
 
 /* Responsive Design */
@@ -207,108 +193,155 @@ table a:hover {
     table td {
         padding: 0.75rem;
     }
-
 }
 
-    .preheader {
-        background-color: #ccc;
-        padding: 10px 20px;
-        border-bottom: 1px solid #DDD;
-    }
+/* Form Styles */
+.form {
+    margin: 20px;
+}
 
-    .area {
-        display: flex;
-        flex:1;
-    }
+.form label {
+    display: block;
+    margin-bottom: 10px; /* Menor espaçamento entre label e input */
+}
 
-    .area .leftside {
-        flex: 1;
-        border-right: 1px solid #ccc;
-    }
+.form input,
+.form select {
+    display: block;
+    width: 100%;
+    height: 40px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    outline: 0;
+    padding: 0 10px;
+    margin-bottom: 15px; /* Adiciona espaçamento entre os itens */
+}
 
-    .area .rightside {
-        margin: 0 auto;
-    }
-    .area .rightside iframe {
-        width: 300px;
-        height: 550px;
-        border: 10px solid #000;
-        border-radius: 20px;
-        margin: 20px;
-    }
+.btn-submit {
+    background-color: #3f7125; /* Verde */
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    padding: 10px; /* Adiciona padding para aumentar o tamanho */
+    border-radius: 5px; /* Cantos arredondados */
+    transition: background-color 0.3s, transform 0.2s; /* Efeitos de transição */
+}
 
-    .preheader {
-        background-color: #ccc;
-        padding: 10px 20px;
-        border-bottom: 1px solid #DDD;
-    }
+.btn-submit:hover {
+    background-color: #2f541e; /* Tom mais escuro ao passar o mouse */
+    transform: scale(1.05); /* Efeito de aumento */
+}
 
-    .area {
-        display: flex;
-        flex:1;
-    }
+.preheader {
+    background-color: #ccc;
+    padding: 10px 20px;
+    border-bottom: 1px solid #DDD;
+}
 
-    .area .leftside {
-        flex: 1;
-        border-right: 1px solid #ccc;
-    }
+.area {
+    display: flex;
+    flex: 1;
+}
 
-    .area .rightside {
-        margin: 0 auto;
-    }
-    .area .rightside iframe {
-        width: 300px;
-        height: 550px;
-        border: 10px solid #000;
-        border-radius: 20px;
-        margin: 20px;
-    }
+.area .leftside {
+    flex: 1;
+    border-right: 1px solid #ccc;
+}
 
-    .bigbutton {
-        display: block;
-        margin: 20px;
-        padding: 15px;
-        background-color: #ccc;
-        border-radius: 10px;
-        color: #000;
-        text-align: center;
-        text-decoration: none;
+.area .rightside {
+    margin: 0 auto;
+}
 
-    }
+.area .rightside iframe {
+    width: 300px;
+    height: 550px;
+    border: 10px solid #000;
+    border-radius: 20px;
+    margin: 20px;
+}
 
-    .bigbutton:hover {
-        background-color: #AAA;
-    }
+.bigbutton {
+    display: block;
+    margin: 20px;
+    padding: 15px;
+    background-color: #ccc;
+    border-radius: 10px;
+    color: #000;
+    text-align: center;
+    text-decoration: none;
+}
 
-    #links {
-        padding:0; 
-        list-style: none;
-        margin: 20px;
-    }
+.bigbutton:hover {
+    background-color: #AAA;
+}
 
-    .link--item {
-        display: flex;
-        background-color: #fff;
-        margin-bottom: 20px;
-        border-radius: 10px;
-        padding: 10px;
-        align-items: center;
-        box-shadow: 0px 2px 2px #ccc;
-    }
+#links {
+    padding: 0;
+    list-style: none;
+    margin: 20px;
+}
 
-    .link--item-order {
-        cursor: move;
-        margin-right: 10px;
-    }
+.link--item {
+    display: flex;
+    background-color: #fff;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    padding: 10px;
+    align-items: center;
+    box-shadow: 0px 2px 2px #ccc;
+}
 
-    .link--item-order {
-        flex: 1;
-    }
+.link--item-order {
+    cursor: move;
+    margin-right: 10px;
+}
 
-    .link--item-title {
-        font-weight: bold;
-    }
+.link--item-order {
+    flex: 1;
+}
 
-    .link--item-buttons a:hover {
-        text-decoration: underline;
-    }
+.link--item-title {
+    font-weight: bold;
+}
+
+.link--item-buttons a:hover {
+    text-decoration: underline;
+}
+
+form {
+    margin: 20px;
+}
+
+form label {
+    display: block;
+}
+
+form input,
+form select {
+    display: block;
+    width: 100%;
+    height: 40px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    outline: 0;
+    padding: 0 10px;
+    margin-bottom: 15px; /* Aumenta o espaçamento entre os itens */
+}
+
+form input[type=submit] {
+    background-color: #3f7125; /* Verde */
+    border: 0;
+    color: #fff;
+    cursor: pointer;
+    padding: 10px; /* Adiciona padding para aumentar o tamanho */
+    border-radius: 5px; /* Cantos arredondados */
+    transition: background-color 0.3s, transform 0.2s; /* Efeitos de transição */
+}
+
+form input[type=submit]:hover {
+    background-color: #2f541e; 
+}
+
+h3 {
+    margin-left: 20px;
+}

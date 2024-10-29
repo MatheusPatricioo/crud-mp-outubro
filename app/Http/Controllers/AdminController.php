@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Validation\Rule;
 
 use App\Models\User;
 use App\Models\Page;
@@ -187,9 +188,9 @@ class AdminController extends Controller
     {
         $user = Auth::user();
         $link = Link::find($linkid);
-    
+
         $myPages = Page::where('id_user', $user->id)->pluck('id')->toArray();
-    
+
         if (in_array($link->id_page, $myPages)) {
             if ($link->order > $pos) {
                 // Subiu o item - jogando os próximos para baixo
@@ -210,11 +211,11 @@ class AdminController extends Controller
                     $beforeLink->save();
                 }
             }
-    
+
             // Posicionando o item
             $link->order = $pos;
             $link->save();
-    
+
             // Corrigindo as posições
             $allLinks = Link::where('id_page', $link->id_page)
                 ->orderBy('order', 'ASC')
@@ -224,17 +225,17 @@ class AdminController extends Controller
                 $linkItem->save();
             }
         }
-    
+
         return [];
     }
-    
+
     public function newLink($slug)
     {
         $user = Auth::user();
         $page = Page::where('id_user', $user->id)
             ->where('slug', $slug)
             ->first();
-    
+
         if ($page) {
             return view('admin/page_editlink', [
                 'menu' => 'links',
@@ -244,8 +245,50 @@ class AdminController extends Controller
             return redirect('/admin');
         }
     }
-    
 
+    public function newLinkAction($slug, Request $request)
+    {
+        $user = Auth::user();
+        $page = Page::where('id_user', $user->id)
+            ->where('slug', $slug)
+            ->first();
+    
+        if ($page) {
+            $fields = $request->validate([
+                'status' => ['required', 'boolean'],
+                'title' => ['required', 'min:2'],
+                'href' => ['required', 'url'],
+                'op_bg_color' => ['required', 'regex:/^[#][0-9A-F]{3,6}$/i'],
+                'op_text_color' => ['required', 'regex:/^[#][0-9A-F]{3,6}$/i'],
+                'op_border_type' => ['required', Rule::in(['square', 'rounded'])],
+                'label' => ['nullable', 'string']
+            ]);
+    
+            $newLink = new Link();
+            $newLink->id_page = $page->id;
+            $newLink->status = $fields['status'];
+            $newLink->border = 1;
+            $newLink->title = $fields['title'];
+            $newLink->href = $fields['href'];
+            $newLink->op_bg_color = $fields['op_bg_color'];
+            $newLink->op_text_color = $fields['op_text_color'];
+            $newLink->op_border_type = $fields['op_border_type'];
+            $newLink->id_user = $user->id;
+            $newLink->url = $fields['href'];
+            $newLink->label = $fields['label'] ?? 'Default Label';
+            
+            // Define o campo `order` com base no próximo valor disponível
+            $newLink->order = Link::where('id_page', $page->id)->max('order') + 1;
+    
+            $newLink->save();
+    
+            return redirect('/admin/' . $page->slug . '/links');
+        } else {
+            return redirect('/admin');
+        }
+    }
+    
+    
     public function pageDesign($slug)
     {
         return view('admin/page_design', [
