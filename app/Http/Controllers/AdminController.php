@@ -406,7 +406,7 @@ class AdminController extends Controller
 
         }
 
-        // Se o link não for encontrado, redireciona para a área inicial
+        // Se o link não for encontrado, redireciona para a área inicial :)
         return redirect('/admin');
     }
 
