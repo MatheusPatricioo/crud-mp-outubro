@@ -9,7 +9,7 @@ O sistema permite que usuários criem, visualizem, editem e excluam links, organ
 ## Tecnologias Utilizadas
 
 - **Backend**: Laravel (PHP)
-- **Frontend**: Blade (motor de templates do Laravel), HTML, CSS (Bootstrap)
+- **Frontend**: Blade (motor de templates do Laravel), HTML, CSS, JS (Bootstrap)
 - **Banco de Dados**: MySQL
 
 ## Funcionalidades
