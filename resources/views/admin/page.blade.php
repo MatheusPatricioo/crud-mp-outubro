@@ -11,11 +11,14 @@
     <div class="area">
         <div class="leftside">
             <header>
-                <ul>
-                    <li @if ($menu=='links') class ="active" @endif><a href="{{url('/admin/'.$page->slug.'/links')}}">Links</a></li>
-                    <li @if ($menu=='design') class ="active" @endif><a href="{{url('/admin/'.$page->slug.'/design')}}">Aparência</a></li>
-                    <li @if ($menu=='stats') class ="active" @endif><a href="{{url('/admin/'.$page->slug.'/stats')}}">Estatísticas</a></li>
-                </ul>
+            <header>
+    <ul>
+        <li @if ($menu=='links') class="active" @endif><a href="{{url('/admin/'.$page->slug.'/links')}}">Links</a></li>
+        <li @if ($menu=='design') class="active disabled" @endif><a href="{{url('/admin/'.$page->slug.'/design')}}" class="disabled">Aparência</a></li>
+        <li @if ($menu=='stats') class="active disabled" @endif><a href="{{url('/admin/'.$page->slug.'/stats')}}" class="disabled">Estatísticas</a></li>
+    </ul>
+</header>
+
             </header>
             @yield('body')
         </div>

@@ -4,13 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ url('assets/css/admin.login.css') }}">
-    <title>Login Admin</title>
+    <title>Login</title>
 </head>
 <body>
 
 <div class="login-wrapper">
     <div class="login-box">
-        <h1>Login Admin</h1>
+        <h1>Login</h1>
 
         <!-- Exibir erros de validação -->
         @if ($errors->any())

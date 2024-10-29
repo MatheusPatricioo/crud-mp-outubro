@@ -414,3 +414,35 @@ h3 {
 .button-edit:hover {
     background-color: #388e3c;
 }
+
+/* Botões desabilitados */
+a.disabled {
+    pointer-events: none; /* Desativa o clique */
+    color: #a0a0a0; /* Cor acinzentada */
+    transition: none; /* Remove transições */
+    padding: 0.4rem 0.8rem;
+    border-radius: 4px;
+
+}
+
+/* Links normais */
+header ul li {
+    display: inline-block;
+    padding: 0 15px;
+    font-size: 16px;
+    color: #333;
+}
+
+/* Link ativo */
+header ul li.active a {
+    border-bottom: 2px solid #000;
+}
+
+
+
+/* Alinha todos os itens no mesmo nível */
+header ul {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}

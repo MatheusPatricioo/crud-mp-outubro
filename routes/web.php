@@ -6,7 +6,12 @@ use App\Http\Controllers\PageController;
 use App\Http\Controllers\HomeController;
 
 // Rota principal
-Route::get('/', [HomeController::class, 'index']);
+// Route::get('/', [HomeController::class, 'index']);
+
+Route::get('/', function () {
+    return redirect('/admin/login');
+});
+
 
 // Prefixo para rotas de admin
 Route::prefix('/admin')->group(function () {
